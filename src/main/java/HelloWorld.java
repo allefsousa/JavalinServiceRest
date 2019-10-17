@@ -7,7 +7,7 @@ import static io.javalin.apibuilder.ApiBuilder.get;
 
 public class HelloWorld {
     public static void main(String[] args) {
-        Javalin app = Javalin.create().start(8000);
+        Javalin app = Javalin.create().start(getHerokuAssignedPort());
 
         app.routes(() -> {
             get("/", ctx -> ctx.result("Hello World"));
@@ -21,5 +21,14 @@ public class HelloWorld {
         }));
 
 
+
+
+    }
+    private static int getHerokuAssignedPort() {
+        String herokuPort = System.getenv("PORT");
+        if (herokuPort != null) {
+            return Integer.parseInt(herokuPort);
+        }
+        return 7000;
     }
 }
