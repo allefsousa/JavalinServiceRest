@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_javalin" default="compile.module.javalin">
+  <dirname property="module.javalin.basedir" file="${ant.file.module_javalin}"/>
+  
+  <property name="module.jdk.home.javalin" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.javalin" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.javalin" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.javalin" value="-encoding UTF-8 -source 8 -target 1.8 ${compiler.args}"/>
+  
+  <property name="javalin.output.dir" value="${module.javalin.basedir}/target/classes"/>
+  <property name="javalin.testoutput.dir" value="${module.javalin.basedir}/target/test-classes"/>
+  
+  <path id="javalin.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="javalin.module.production.classpath">
+    <path refid="${module.jdk.classpath.javalin}"/>
+    <path refid="library.maven:_io.javalin:javalin:3.5.0.classpath"/>
+    <path refid="library.maven:_org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.31.classpath"/>
+    <path refid="library.maven:_org.jetbrains.kotlin:kotlin-stdlib:1.3.31.classpath"/>
+    <path refid="library.maven:_org.jetbrains.kotlin:kotlin-stdlib-common:1.3.31.classpath"/>
+    <path refid="library.maven:_org.jetbrains:annotations:13.0.classpath"/>
+    <path refid="library.maven:_org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.31.classpath"/>
+    <path refid="library.maven:_org.slf4j:slf4j-api:1.7.26.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-server:9.4.20.v20190813.classpath"/>
+    <path refid="library.maven:_javax.servlet:javax.servlet-api:3.1.0.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-http:9.4.20.v20190813.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-util:9.4.20.v20190813.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-io:9.4.20.v20190813.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-webapp:9.4.20.v20190813.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-xml:9.4.20.v20190813.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-servlet:9.4.20.v20190813.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-security:9.4.20.v20190813.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty.websocket:websocket-server:9.4.20.v20190813.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty.websocket:websocket-common:9.4.20.v20190813.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty.websocket:websocket-api:9.4.20.v20190813.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty.websocket:websocket-client:9.4.20.v20190813.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-client:9.4.20.v20190813.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty.websocket:websocket-servlet:9.4.20.v20190813.classpath"/>
+    <path refid="library.maven:_org.slf4j:slf4j-simple:1.7.26.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-databind:2.9.10.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-annotations:2.9.10.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-core:2.9.10.classpath"/>
+  </path>
+  
+  <path id="javalin.runtime.production.module.classpath">
+    <pathelement location="${javalin.output.dir}"/>
+    <path refid="library.maven:_io.javalin:javalin:3.5.0.classpath"/>
+    <path refid="library.maven:_org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.31.classpath"/>
+    <path refid="library.maven:_org.jetbrains.kotlin:kotlin-stdlib:1.3.31.classpath"/>
+    <path refid="library.maven:_org.jetbrains.kotlin:kotlin-stdlib-common:1.3.31.classpath"/>
+    <path refid="library.maven:_org.jetbrains:annotations:13.0.classpath"/>
+    <path refid="library.maven:_org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.31.classpath"/>
+    <path refid="library.maven:_org.slf4j:slf4j-api:1.7.26.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-server:9.4.20.v20190813.classpath"/>
+    <path refid="library.maven:_javax.servlet:javax.servlet-api:3.1.0.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-http:9.4.20.v20190813.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-util:9.4.20.v20190813.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-io:9.4.20.v20190813.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-webapp:9.4.20.v20190813.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-xml:9.4.20.v20190813.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-servlet:9.4.20.v20190813.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-security:9.4.20.v20190813.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty.websocket:websocket-server:9.4.20.v20190813.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty.websocket:websocket-common:9.4.20.v20190813.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty.websocket:websocket-api:9.4.20.v20190813.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty.websocket:websocket-client:9.4.20.v20190813.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-client:9.4.20.v20190813.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty.websocket:websocket-servlet:9.4.20.v20190813.classpath"/>
+    <path refid="library.maven:_org.slf4j:slf4j-simple:1.7.26.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-databind:2.9.10.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-annotations:2.9.10.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-core:2.9.10.classpath"/>
+  </path>
+  
+  <path id="javalin.module.classpath">
+    <path refid="${module.jdk.classpath.javalin}"/>
+    <pathelement location="${javalin.output.dir}"/>
+    <path refid="library.maven:_io.javalin:javalin:3.5.0.classpath"/>
+    <path refid="library.maven:_org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.31.classpath"/>
+    <path refid="library.maven:_org.jetbrains.kotlin:kotlin-stdlib:1.3.31.classpath"/>
+    <path refid="library.maven:_org.jetbrains.kotlin:kotlin-stdlib-common:1.3.31.classpath"/>
+    <path refid="library.maven:_org.jetbrains:annotations:13.0.classpath"/>
+    <path refid="library.maven:_org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.31.classpath"/>
+    <path refid="library.maven:_org.slf4j:slf4j-api:1.7.26.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-server:9.4.20.v20190813.classpath"/>
+    <path refid="library.maven:_javax.servlet:javax.servlet-api:3.1.0.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-http:9.4.20.v20190813.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-util:9.4.20.v20190813.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-io:9.4.20.v20190813.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-webapp:9.4.20.v20190813.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-xml:9.4.20.v20190813.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-servlet:9.4.20.v20190813.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-security:9.4.20.v20190813.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty.websocket:websocket-server:9.4.20.v20190813.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty.websocket:websocket-common:9.4.20.v20190813.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty.websocket:websocket-api:9.4.20.v20190813.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty.websocket:websocket-client:9.4.20.v20190813.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-client:9.4.20.v20190813.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty.websocket:websocket-servlet:9.4.20.v20190813.classpath"/>
+    <path refid="library.maven:_org.slf4j:slf4j-simple:1.7.26.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-databind:2.9.10.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-annotations:2.9.10.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-core:2.9.10.classpath"/>
+  </path>
+  
+  <path id="javalin.runtime.module.classpath">
+    <pathelement location="${javalin.testoutput.dir}"/>
+    <pathelement location="${javalin.output.dir}"/>
+    <path refid="library.maven:_io.javalin:javalin:3.5.0.classpath"/>
+    <path refid="library.maven:_org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.31.classpath"/>
+    <path refid="library.maven:_org.jetbrains.kotlin:kotlin-stdlib:1.3.31.classpath"/>
+    <path refid="library.maven:_org.jetbrains.kotlin:kotlin-stdlib-common:1.3.31.classpath"/>
+    <path refid="library.maven:_org.jetbrains:annotations:13.0.classpath"/>
+    <path refid="library.maven:_org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.31.classpath"/>
+    <path refid="library.maven:_org.slf4j:slf4j-api:1.7.26.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-server:9.4.20.v20190813.classpath"/>
+    <path refid="library.maven:_javax.servlet:javax.servlet-api:3.1.0.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-http:9.4.20.v20190813.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-util:9.4.20.v20190813.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-io:9.4.20.v20190813.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-webapp:9.4.20.v20190813.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-xml:9.4.20.v20190813.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-servlet:9.4.20.v20190813.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-security:9.4.20.v20190813.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty.websocket:websocket-server:9.4.20.v20190813.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty.websocket:websocket-common:9.4.20.v20190813.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty.websocket:websocket-api:9.4.20.v20190813.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty.websocket:websocket-client:9.4.20.v20190813.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-client:9.4.20.v20190813.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty.websocket:websocket-servlet:9.4.20.v20190813.classpath"/>
+    <path refid="library.maven:_org.slf4j:slf4j-simple:1.7.26.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-databind:2.9.10.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-annotations:2.9.10.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-core:2.9.10.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.javalin">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.javalin">
+    <patternset refid="excluded.from.module.javalin"/>
+  </patternset>
+  
+  <path id="javalin.module.sourcepath">
+    <dirset dir="${module.javalin.basedir}">
+      <include name="src/main/java"/>
+      <include name="src/main/resources"/>
+    </dirset>
+  </path>
+  
+  <path id="javalin.module.test.sourcepath">
+    <dirset dir="${module.javalin.basedir}">
+      <include name="src/test/java"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.javalin" depends="compile.module.javalin.production,compile.module.javalin.tests" description="Compile module javalin"/>
+  
+  <target name="compile.module.javalin.production" depends="register.custom.compilers" description="Compile module javalin; production classes">
+    <mkdir dir="${javalin.output.dir}"/>
+    <javac2 destdir="${javalin.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.javalin}/javac">
+      <compilerarg line="${compiler.args.javalin}"/>
+      <bootclasspath refid="javalin.module.bootclasspath"/>
+      <classpath refid="javalin.module.production.classpath"/>
+      <src refid="javalin.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.javalin"/>
+    </javac2>
+    
+    <copy todir="${javalin.output.dir}">
+      <fileset dir="${module.javalin.basedir}/src/main/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.javalin.basedir}/src/main/resources">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.javalin.tests" depends="register.custom.compilers,compile.module.javalin.production" description="compile module javalin; test classes" unless="skip.tests">
+    <mkdir dir="${javalin.testoutput.dir}"/>
+    <javac2 destdir="${javalin.testoutput.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.javalin}/javac">
+      <compilerarg line="${compiler.args.javalin}"/>
+      <bootclasspath refid="javalin.module.bootclasspath"/>
+      <classpath refid="javalin.module.classpath"/>
+      <src refid="javalin.module.test.sourcepath"/>
+      <patternset refid="excluded.from.compilation.javalin"/>
+    </javac2>
+    
+    <copy todir="${javalin.testoutput.dir}">
+      <fileset dir="${module.javalin.basedir}/src/test/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="clean.module.javalin" description="cleanup module">
+    <delete dir="${javalin.output.dir}"/>
+    <delete dir="${javalin.testoutput.dir}"/>
+  </target>
+</project>
